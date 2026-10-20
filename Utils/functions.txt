@@ -1,0 +1,32 @@
+ln(x)             logarithme naturel
+log(x)            logarithme base 10
+abs(x)            valeur absolue
+sin(x)            sinus
+exp(x)            e à la puissance x
+cos(x)            cosinus
+tan(x)            tangente
+min(x, y)         plus petit des deux nombres
+max(x, y)         plus grand des deux nombres
+gcd(a, b)         plus grand commun diviseur
+lcm(a, b)         plus petit commun multiple
+pow(x, y)         puissance x^y
+root(x, n)        racine n-ième de x
+sqrt(x)           racine carrée
+asin(x)           arcsinus
+acos(x)           arccosinus
+cbrt(x)           racine cubique
+sinh(x)           sinus hyperbolique
+cosh(x)           cosinus hyperbolique
+tanh(x)           tangente hyperbolique
+comb(n, k)        combinaisons
+perm(n, k)        arrangements
+ceil(x)           arrondi vers le haut
+atan(x)           arctangente
+floor(x)          arrondi vers le bas
+round(x)          arrondi au plus proche
+trunc(x)          supprime la partie décimale
+asinh(x)          arcsinus hyperbolique
+acosh(x)          arcosinus hyperbolique
+atanh(x)          arctangente hyperbolique
+logbase(x, base)  logarithme de x dans une base donnée
+factorial(n)      factorielle
