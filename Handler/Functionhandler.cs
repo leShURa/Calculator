@@ -1,103 +1,15 @@
 using System.Text;
+using Features.Functionhandler;
 
 namespace Handler.Functionhandler;
 
 class FunctionHandler{
-    public static double Factorial(double n)
-    {
-        if (n < 0)
-            throw new ArgumentException("Factorial is not defined for negative numbers.");
-        if (n == 0 || n == 1)
-            return 1;
-        double result = 1;
-        for (int i = 2; i <= n; i++)
-        {
-            result *= i;
-        }
-        return result;
-    }
-    public static int PGCD(int a, int b)
-    {
-        a = Math.Abs(a);
-        b = Math.Abs(b);
-
-        while (b != 0)
-        {
-            int reste = a % b;
-            a = b;
-            b = reste;
-        }
-
-        return a;
-    }
-    static int PPCM(int a, int b)
-    {
-        if (a == 0 || b == 0)
-            return 0;
-
-        return Math.Abs(a / PGCD(a, b) * b);
-    }
-    static int Comb(int n, int k)
-    {
-        if (k < 0 || k > n)
-            return 0;
-
-        if (k == 0 || k == n)
-            return 1;
-
-        k = Math.Min(k, n - k); // Take advantage of symmetry
-        int c = 1;
-        for (int i = 0; i < k; i++)
-        {
-            c = c * (n - i) / (i + 1);
-        }
-        return c;
-    }
-    static int Perm(int n, int k)
-    {
-        if (k < 0 || k > n)
-            return 0;
-
-        int p = 1;
-        for (int i = 0; i < k; i++)
-        {
-            p *= (n - i);
-        }
-        return p;
-    }
+    
     public HashSet<string> functions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
-        "ln",
-        "log",
-        "abs",
-        "sin",
-        "exp",
-        "cos",
-        "tan",
-        "min",
-        "max",
-        "gcd",
-        "lcm",
-        "pow",
-        "root",
-        "sqrt",
-        "asin",
-        "acos",
-        "cbrt",
-        "sinh",
-        "cosh",
-        "tanh",
-        "comb",
-        "perm",
-        "ceil",
-        "atan",
-        "floor",
-        "round",
-        "trunc",
-        "asinh",
-        "acosh",
-        "atanh",
-        "logbase",
+        "ln", "log", "abs", "sin", "exp", "cos", "tan", "min", "max", "gcd", "lcm", "pow",
+        "root", "sqrt", "asin", "acos", "cbrt", "sinh", "cosh", "tanh", "comb", "perm",
+        "ceil", "atan", "floor", "round", "trunc", "asinh", "acosh", "atanh", "logbase",
         "factorial"
     };
     public async Task<List<string>> FunctionParsing(List<string> tokens)
@@ -126,6 +38,7 @@ class FunctionHandler{
                         tokens[i] = functionResult.ToString();
                         tokens.RemoveAt(i + 1);
                         tokens.RemoveAt(i + 1);
+                        i--;
                     }
                 }
             }
@@ -160,15 +73,15 @@ class FunctionHandler{
             "max"       => Math.Max(args[0], args[1]),
             "pow"       => Math.Pow(args[0], args[1]),
             "root"      => Math.Pow(args[0], 1.0 / args[1]),
-            "factorial" => Factorial((int)args[0]),
+            "factorial" => NewFunction.Factorial((int)args[0]),
             "logbase"   => Math.Log(args[0], args[1]),
             "acosh"     => Math.Acosh(args[0]),
             "asinh"     => Math.Asinh(args[0]),
             "atanh"     => Math.Atanh(args[0]),
-            "gcd"       => PGCD((int)args[0], (int)args[1]),
-            "lcm"       => PPCM((int)args[0], (int)args[1]),
-            "comb"      => Comb((int)args[0], (int)args[1]),
-            "perm"      => Perm((int)args[0], (int)args[1]),
+            "gcd"       => NewFunction.PGCD((int)args[0], (int)args[1]),
+            "lcm"       => NewFunction.PPCM((int)args[0], (int)args[1]),
+            "comb"      => NewFunction.Comb((int)args[0], (int)args[1]),
+            "perm"      => NewFunction.Perm((int)args[0], (int)args[1]),
             _ => throw new NotImplementedException(
                 $"Le calcul de {functionName} n'est pas encore implémenté.")
         };
